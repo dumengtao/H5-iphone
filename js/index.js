@@ -62,11 +62,26 @@ var playScreenAnimateDone = function(screenCls){
 	}
 }
 
-$(document).ready(function(){
+// 判断浏览器是否为IE9及以下就跳转到浏览器更新页面
+var isIE9 = function(){
+	var o = navigator.userAgent.match(/MSIE (\d+)/);
+	o = o && o[1];
+	console.log('o', o);
+  	// ie9 以下 || o != null
+ 	if (!!o && o < 10) {
+	    // 更新页面
+	    var newUrl = '../H5-iphone/isIE9.html';
+	    location.href =  newUrl;
+	}
+}
+
+window.onload = function(){
+	isIE9();
+
 	for(var k in screenAnimateElements){
 		setScreenAnimateInit(k);
 	}
-});
+};
 
 /*
 ***第二步：页面滚动到哪里，就播放到哪里
